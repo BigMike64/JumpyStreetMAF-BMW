@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Grass
+    uniqueID: 626158573
+    locked: 0
+  - name: Water
+    uniqueID: 2777300759
+    locked: 0
+  - name: Chicken
+    uniqueID: 1140515115
     locked: 0
