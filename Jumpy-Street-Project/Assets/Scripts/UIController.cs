@@ -19,9 +19,9 @@ public class UIController : MonoBehaviour
     {
         print("moving to the next scene");
 
-        /*int currentScene = SceneManager.GetActiveScene().buildIndex;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
 
-        SceneManager.LoadScene(currentScene + 1);*/
+        SceneManager.LoadScene(currentScene + 1);
     }
 
     public void OnQuitButtonClick()
