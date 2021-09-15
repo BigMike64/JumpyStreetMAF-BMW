@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject camera;
+    [SerializeField] new private GameObject camera;
+    private Vector3 currentPosition;
 
-    // Update is called once per frame
+    // Allows the player to move up, right, and left within the confines of the screen
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.UpArrow))
         {
+            currentPosition = transform.position;
             transform.position = transform.position + new Vector3(0, 2.5f);
             camera.transform.position = camera.transform.position + new Vector3(0, 2.5f);
         }
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         } */
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
+            currentPosition = transform.position;
             transform.position = transform.position + new Vector3(2.5f, 0);
             
             if (transform.position.x > 10)
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
+            currentPosition = transform.position;
             transform.position = transform.position + new Vector3(-2.5f, 0);
 
             if (transform.position.x < -10)
@@ -43,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("Water"))
         {
             Debug.Log("Chicken drowned");
+        }
+
+        if (collision.CompareTag("Tree"))
+        {
+            transform.position = currentPosition;
         }
     }
 }
