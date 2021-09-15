@@ -4,55 +4,46 @@ using UnityEngine;
 
 public class RowGenerator : MonoBehaviour
 {
-    private Vector2 currentRow = new Vector2(0, -5);
+    private Vector2 currentRow = new Vector2(0, -2.5f);
     private int maxRowCount = 5;
     
     [SerializeField] private Transform rowHolder;
-    [SerializeField] private List<RowData> rowDatas = new List<RowData>();
+    [SerializeField] private List<GameObject> groundTypes = new List<GameObject>();
+    [SerializeField] private List<GameObject> objectTypes = new List<GameObject>();
     [SerializeField] private List<GameObject> currentGroundRows = new List<GameObject>();
 
     // Instantiates the starting amount of rows
     private void Start()
     {
-        for (int i = 0; i < maxRowCount; i++)
+        for (int i = 0; i < maxRowCount - 1; i++)
         {
-            CreateGround(true);
+            CreateGround();
         }
-
-        maxRowCount = currentGroundRows.Count;
     }
 
     // When the player moves forward, creates new rows
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            CreateGround(false);
+            CreateGround();
         }
     }
 
     // Creates rows and removes previous rows in the list, keeping the total the same
-    private void CreateGround(bool isStart)
+    private void CreateGround()
     {
-        int groundChosen = Random.Range(0, rowDatas.Count);
-        int rowsInSuccession = Random.Range(1, rowDatas[groundChosen].maxInSuccession);
+        int row = Random.Range(0, groundTypes.Count);
 
-        for (int i = 0; i < rowsInSuccession; i++)
+        GameObject ground = Instantiate(groundTypes[row], currentRow, Quaternion.identity, rowHolder);
+        currentGroundRows.Add(ground);
+
+        if (currentGroundRows.Count > maxRowCount)
         {
-            GameObject ground = Instantiate(rowDatas[groundChosen].row, currentRow, Quaternion.identity, rowHolder);
-            currentGroundRows.Add(ground);
-
-            // Checks if the game is starting, if it's not, removes rows
-            if (!isStart)
-            {
-                if (currentGroundRows.Count > maxRowCount)
-                {
-                    Destroy(currentGroundRows[0]);
-                    currentGroundRows.RemoveAt(0);
-                }
-            }
-
-            currentRow.y += 2.5f;
+            Destroy(currentGroundRows[0]);
+            currentGroundRows.RemoveAt(0);
         }
+        
+        currentRow.y += 2.5f;
     }
 }
