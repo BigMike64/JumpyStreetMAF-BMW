@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RowGenerator : MonoBehaviour
 {
-    private Vector2 currentRow = new Vector2(0, -2.5f);
+    private Vector2 currentRow = new Vector2(0, 0);
     private int maxRowCount = 5;
     
     [SerializeField] private Transform rowHolder;
@@ -15,7 +15,7 @@ public class RowGenerator : MonoBehaviour
     // Instantiates the starting amount of rows
     private void Start()
     {
-        for (int i = 0; i < maxRowCount - 1; i++)
+        for (int i = 0; i < maxRowCount - 2; i++)
         {
             CreateGround();
         }
