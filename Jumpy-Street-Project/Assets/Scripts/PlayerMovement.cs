@@ -45,26 +45,12 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.sprite = chickenSpriteArray[2];
             currentPosition = transform.position;
             transform.position = transform.position + new Vector3(2.5f, 0);
-            
-            if (transform.position.x > 10)
-            {
-                Debug.Log("Chicken crossed the death barrier");
-                deathPanel.SetActive(true);
-                gameObject.SetActive(false);
-            }
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             spriteRenderer.sprite = chickenSpriteArray[1];
             currentPosition = transform.position;
             transform.position = transform.position + new Vector3(-2.5f, 0);
-
-            if (transform.position.x < -10)
-            {
-                Debug.Log("Chicken crossed the death barrier");
-                deathPanel.SetActive(true);
-                gameObject.SetActive(false);
-            }
         }
     }
 
@@ -89,5 +75,13 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = currentPosition;
         }
+    }
+
+    // If the chicken goes off screen, kill the chicken and show the death screen
+    private void OnBecameInvisible()
+    {
+        Debug.Log("Chicken crossed the death barrier");
+        deathPanel.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

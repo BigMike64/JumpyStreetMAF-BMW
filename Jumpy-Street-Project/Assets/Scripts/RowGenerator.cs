@@ -11,6 +11,7 @@ public class RowGenerator : MonoBehaviour
     [SerializeField] private List<GameObject> groundTypes = new List<GameObject>();
     [SerializeField] private List<GameObject> objectTypes = new List<GameObject>();
     [SerializeField] private List<GameObject> currentGroundRows = new List<GameObject>();
+    [SerializeField] private List<GameObject> currentObjectRows = new List<GameObject>();
 
     // Instantiates the starting amount of rows
     private void Start()
@@ -36,12 +37,18 @@ public class RowGenerator : MonoBehaviour
         int row = Random.Range(0, groundTypes.Count);
 
         GameObject ground = Instantiate(groundTypes[row], currentRow, Quaternion.identity, rowHolder);
+        GameObject objects = Instantiate(objectTypes[row], currentRow, Quaternion.identity, rowHolder);
+
         currentGroundRows.Add(ground);
+        currentObjectRows.Add(objects);
 
         if (currentGroundRows.Count > maxRowCount)
         {
             Destroy(currentGroundRows[0]);
+            Destroy(currentGroundRows[0]);
+
             currentGroundRows.RemoveAt(0);
+            currentObjectRows.RemoveAt(0);
         }
         
         currentRow.y += 2.5f;
