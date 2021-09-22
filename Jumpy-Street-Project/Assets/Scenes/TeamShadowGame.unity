@@ -982,13 +982,25 @@ MonoBehaviour:
   obstacleTypes:
   - {fileID: 2768679207336916002, guid: fb2e6ccfc7f81584ca4202a5c3986d7e, type: 3}
   - {fileID: 153812, guid: d52d0272c3cf24d2ca85e80069fb4656, type: 3}
+  - {fileID: 117432, guid: d2bae12992f47464f8643489be873e58, type: 3}
   - {fileID: 4908570305243166686, guid: 267c7a64486794a4b8b2e0045a021868, type: 3}
   currentGroundRows:
   - {fileID: 4865112567206480622}
   - {fileID: 1712358064}
+  waterRowTypes: 00000000
   currentObstacleRows:
   - {fileID: 4908570305243166686, guid: 267c7a64486794a4b8b2e0045a021868, type: 3}
   - {fileID: 1637690163}
+  xPositions:
+  - -10
+  - -7.5
+  - -5
+  - -2.5
+  - 0
+  - 2.5
+  - 5
+  - 7.5
+  - 10
 --- !u!4 &837442896
 Transform:
   m_ObjectHideFlags: 0
