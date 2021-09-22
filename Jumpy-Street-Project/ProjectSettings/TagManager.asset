@@ -56,9 +56,15 @@ TagManager:
   - name: Road
     uniqueID: 2656049941
     locked: 0
+  - name: Log
+    uniqueID: 407274571
+    locked: 0
   - name: Chicken
     uniqueID: 1140515115
     locked: 0
-  - name: Log
-    uniqueID: 407274571
+  - name: Tree
+    uniqueID: 4222088357
+    locked: 0
+  - name: Car
+    uniqueID: 3616373773
     locked: 0
