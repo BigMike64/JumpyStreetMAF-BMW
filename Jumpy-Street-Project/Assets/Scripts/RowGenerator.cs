@@ -15,6 +15,7 @@ public class RowGenerator : MonoBehaviour
     [SerializeField] private List<int> grassRowTypes = new List<int>();
     [SerializeField] private List<GameObject> currentObstacleRows = new List<GameObject>();
     [SerializeField] private List<float> xPositions = new List<float>();
+    [SerializeField] private float carStartingPos;
 
     // Instantiates the starting amount of rows
     private void Start()
@@ -127,11 +128,11 @@ public class RowGenerator : MonoBehaviour
 
         if (random >= 50)
         {
-            xPosition = xPositions[xPositions.Count - 1];
+            xPosition = carStartingPos;
         }
         else
         {
-            xPosition = xPositions[0];
+            xPosition = -carStartingPos;
         }
 
         return xPosition;

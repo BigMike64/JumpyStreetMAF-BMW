@@ -1003,6 +1003,7 @@ MonoBehaviour:
   - 5
   - 7.5
   - 10
+  carStartingPos: 14
 --- !u!4 &837442896
 Transform:
   m_ObjectHideFlags: 0

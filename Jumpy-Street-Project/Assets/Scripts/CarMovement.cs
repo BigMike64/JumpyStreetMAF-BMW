@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-    private Vector3 startingPos;
+    [SerializeField] private Vector3 startingPos;
     
     private void Awake()
     {
+        startingPos = transform.position;
         StartCoroutine(movement(4f));
+    }
+
+    private void OnBecameInvisible()
+    {
         transform.position = startingPos;
+        StartCoroutine(movement(4f));
     }
 
     public IEnumerator movement(float time)
     {
-        Vector3 startingPos = transform.position;
         Vector3 finalPos = new Vector3(-transform.position.x, transform.position.y);
         float elapsedTime = 0;
 
