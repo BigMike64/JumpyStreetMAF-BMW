@@ -14,7 +14,6 @@ public class RowGenerator : MonoBehaviour
     [SerializeField] private List<int> waterRowTypes = new List<int>();
     [SerializeField] private List<int> grassRowTypes = new List<int>();
     [SerializeField] private List<GameObject> currentObstacleRows = new List<GameObject>();
-    [SerializeField] private List<float> xPositions = new List<float>();
     [SerializeField] private float carStartingPos;
 
     // Instantiates the starting amount of rows
@@ -65,17 +64,17 @@ public class RowGenerator : MonoBehaviour
             // If the row selected was a water row, tells the computer which row was selected
             case 3:
                 obstacle = Instantiate(obstacleTypes[2], currentRow, Quaternion.identity, rowHolder);
-                row = checkIfValidWaterRow(row);
+                row = CheckIfValidWaterRow(row);
                 waterType = row;
                 break;
             case 4:
                 obstacle = Instantiate(obstacleTypes[2], currentRow, Quaternion.identity, rowHolder);
-                row = checkIfValidWaterRow(row);
+                row = CheckIfValidWaterRow(row);
                 waterType = row;
                 break;
             case 5:
                 obstacle = Instantiate(obstacleTypes[2], currentRow, Quaternion.identity, rowHolder);
-                row = checkIfValidWaterRow(row);
+                row = CheckIfValidWaterRow(row);
                 waterType = row;
                 break;
 
@@ -101,11 +100,13 @@ public class RowGenerator : MonoBehaviour
 
         GameObject ground = Instantiate(groundTypes[row], currentRow, Quaternion.identity, rowHolder);
 
+        // Adds the game objects and int values to their lists
         currentGroundRows.Add(ground);
         currentObstacleRows.Add(obstacle);
         waterRowTypes.Add(waterType);
         grassRowTypes.Add(grassType);
 
+        // Removes the ground and object of the last row once the player moves forward
         if (currentGroundRows.Count > maxRowCount)
         {
             Destroy(currentGroundRows[0]);
@@ -139,7 +140,7 @@ public class RowGenerator : MonoBehaviour
     }
 
     // Checks to make sure the row added connects with a valid water row
-    private int checkIfValidWaterRow(int row)
+    private int CheckIfValidWaterRow(int row)
     {
         switch (row)
         {

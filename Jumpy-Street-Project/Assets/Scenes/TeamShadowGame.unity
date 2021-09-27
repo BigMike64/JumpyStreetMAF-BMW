@@ -993,16 +993,6 @@ MonoBehaviour:
   currentObstacleRows:
   - {fileID: 5944034004617749205}
   - {fileID: 1604501209651418226}
-  xPositions:
-  - -10
-  - -7.5
-  - -5
-  - -2.5
-  - 0
-  - 2.5
-  - 5
-  - 7.5
-  - 10
   carStartingPos: 14
 --- !u!4 &837442896
 Transform:
