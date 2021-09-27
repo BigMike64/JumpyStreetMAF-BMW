@@ -33,13 +33,6 @@ public class PlayerMovement : MonoBehaviour
             currentScore += 1;
             scoreText.text = "Score: " + currentScore;
         }
-        /*if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            spriteRenderer.sprite = chickenSpriteArray[0];
-            currentPosition = transform.position;
-            transform.position = transform.position + new Vector3(0, -2.5f);
-            camera.transform.position = camera.transform.position + new Vector3(0, -2.5f);
-        }*/
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             spriteRenderer.sprite = chickenSpriteArray[2];
