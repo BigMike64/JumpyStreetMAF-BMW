@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
             currentScore += 1;
             scoreText.text = "Score: " + currentScore;
+
+            CheckHighScore();
             hs.highScoreText.text = "High Score: " + highScore;
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
@@ -58,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
             currentScore -= 1;
             deathPanel.SetActive(true);
             gameObject.SetActive(false);
-            CheckHighScore();
         }
 
         if (collision.CompareTag("Car"))
@@ -66,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Chicken got ran over");
             deathPanel.SetActive(true);
             gameObject.SetActive(false);
-            CheckHighScore();
         }
 
         if (collision.CompareTag("Tree"))
@@ -81,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Chicken crossed the death barrier");
         deathPanel.SetActive(true);
         gameObject.SetActive(false);
-        CheckHighScore();
     }
 
     public void CheckHighScore()
