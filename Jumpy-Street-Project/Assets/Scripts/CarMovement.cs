@@ -14,8 +14,11 @@ public class CarMovement : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        transform.position = startingPos;
-        StartCoroutine(movement(4f));
+        if (gameObject.activeInHierarchy)
+        {
+            transform.position = startingPos;
+            StartCoroutine(movement(4f));
+        }
     }
 
     public IEnumerator movement(float time)
