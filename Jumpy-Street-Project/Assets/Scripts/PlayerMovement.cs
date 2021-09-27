@@ -10,13 +10,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject deathPanel;
     [SerializeField] Text scoreText;
     private int currentScore = 0;
+    [SerializeField] private HighScore hs;
+    private int highScore;
 
     // Gets the sprite renderer component of the chicken
     private void Start()
     {
         scoreText.text = "Score: " + currentScore;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-
+        highScore = hs.GetHighScore("HighScore");
         deathPanel.SetActive(false);
     }
 
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
             currentScore += 1;
             scoreText.text = "Score: " + currentScore;
+            hs.highScoreText.text = "High Score: " + highScore;
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
@@ -55,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
             currentScore -= 1;
             deathPanel.SetActive(true);
             gameObject.SetActive(false);
+            CheckHighScore();
         }
 
         if (collision.CompareTag("Car"))
@@ -62,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Chicken got ran over");
             deathPanel.SetActive(true);
             gameObject.SetActive(false);
+            CheckHighScore();
         }
 
         if (collision.CompareTag("Tree"))
@@ -76,5 +81,14 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Chicken crossed the death barrier");
         deathPanel.SetActive(true);
         gameObject.SetActive(false);
+        CheckHighScore();
+    }
+
+    public void CheckHighScore()
+    {
+        if(currentScore > highScore)
+        {
+            hs.SetHighScore("HighScore", currentScore);
+        }
     }
 }
