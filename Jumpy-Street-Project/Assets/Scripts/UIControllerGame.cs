@@ -14,6 +14,12 @@ public class UIControllerGame : MonoBehaviour
     public void OnRetryButtonClick()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+    }
+
+    public void OnMainMenuClick()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene - 1);
     }
 }

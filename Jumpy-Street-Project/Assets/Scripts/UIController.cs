@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject titlePanel, helpPanel, creditsPanel;
+    [SerializeField] private GameObject titlePanel, helpPanel, creditsPanel, changeCharacterPanel;
+
+    [SerializeField] private GameObject chicken;
+    [SerializeField] List<Sprite> chickenSprites;
+    private int currentCharacter;
 
     void Start()
     {
         titlePanel.SetActive(true);
         helpPanel.SetActive(false);
         creditsPanel.SetActive(false);
+        changeCharacterPanel.SetActive(false);
+
+        currentCharacter = 0;
+        chicken.GetComponent<Image>().sprite = chickenSprites[currentCharacter];
     }
 
     public void OnPlayButtonClick()
@@ -35,6 +43,7 @@ public class UIController : MonoBehaviour
         helpPanel.SetActive(true);
         creditsPanel.SetActive(false);
         titlePanel.SetActive(false);
+        changeCharacterPanel.SetActive(false);
     }
 
     public void OnCreditsButtonClick()
@@ -42,10 +51,70 @@ public class UIController : MonoBehaviour
         creditsPanel.SetActive(true);
         helpPanel.SetActive(false);
         titlePanel.SetActive(false);
+        changeCharacterPanel.SetActive(false);
     }
 
     public void OnBackButtonClick()
     {
-        Start();
+        titlePanel.SetActive(true);
+        helpPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        changeCharacterPanel.SetActive(false);
+    }
+
+    public void OnChangeCharacterButtonClick()
+    {
+        creditsPanel.SetActive(false);
+        helpPanel.SetActive(false);
+        titlePanel.SetActive(false);
+        changeCharacterPanel.SetActive(true);
+    }
+
+    // Cycles through the available characters
+    public void OnLeftButtonClick()
+    {
+        if (currentCharacter - 1 >= 0)
+        {
+            print("switching to next character");
+            chicken.GetComponent<Image>().sprite = chickenSprites[currentCharacter - 1];
+            currentCharacter -= 1;
+        }
+    }
+
+    // Cycles through the available characters
+    public void OnRightButtonClick()
+    {
+        if (currentCharacter + 1 <= chickenSprites.Count - 1)
+        {
+            print("switching to next character");
+            chicken.GetComponent<Image>().sprite = chickenSprites[currentCharacter + 1];
+            currentCharacter += 1;
+        }
+    }
+
+    // Sets the chosen character for use in the main game
+    public void OnConfirmButtonClick()
+    {
+        ChooseCharacter();
+        PlayerPrefs.SetInt("PlayerCharacter", currentCharacter);
+        PlayerPrefs.Save();
+
+        titlePanel.SetActive(true);
+        helpPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        changeCharacterPanel.SetActive(false);
+    }
+
+    // Correctly chooses the character
+    private void ChooseCharacter()
+    {
+        if (currentCharacter < 4)
+        {
+            currentCharacter += 12;
+        }
+        else
+        {
+            currentCharacter += 24;
+        }
     }
 }

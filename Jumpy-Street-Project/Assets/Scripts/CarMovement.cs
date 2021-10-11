@@ -6,12 +6,13 @@ public class CarMovement : MonoBehaviour
 {
     // The starting position of the car
     [SerializeField] private Vector3 startingPos;
+    [SerializeField] private float movementTime;
     
     // When the car spawns, the car moves to the opposite side of the screen
     private void Awake()
     {
         startingPos = transform.position;
-        StartCoroutine(Movement(4f));
+        StartCoroutine(Movement(movementTime));
     }
 
     // When the car gets to the opposite side,
