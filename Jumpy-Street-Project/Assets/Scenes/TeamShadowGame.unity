@@ -712,7 +712,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 95bcaac6725bf964997dd93967f18703, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -1480,6 +1480,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Splash
     clip: {fileID: 8300000, guid: 7423b8be2d9a8e84492665ac4bcaf922, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: da402ae5889283c4cbcfb0f66046e354, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
