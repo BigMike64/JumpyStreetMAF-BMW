@@ -11,10 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private HighScore hs;
     private int highScore;
 
-    private Vector3 currentPosition;
     [SerializeField] Sprite[] chickenSpriteArray;
     private SpriteRenderer spriteRenderer;
-    
+
+    [SerializeField] private RowGenerator rowGenerator;
+
     // Faces the chosen chicken sprite the correct direction, and then displays the score
     private void Start()
     {
@@ -33,7 +34,15 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.sprite = chickenSpriteArray[PlayerPrefs.GetInt("PlayerCharacter", 12)];
 
-            currentPosition = transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 3f);
+
+            if (hit.collider != null && hit.collider.CompareTag("Tree"))
+            {
+                return;
+            }
+
+            rowGenerator.CreateGround();
+
             transform.position = transform.position + new Vector3(0, 2.5f);
             camera.transform.position = camera.transform.position + new Vector3(0, 2.5f);
 
@@ -47,14 +56,26 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.sprite = chickenSpriteArray[PlayerPrefs.GetInt("PlayerCharacter", 12) - 4];
 
-            currentPosition = transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 3f);
+
+            if (hit.collider != null && hit.collider.CompareTag("Tree"))
+            {
+                return;
+            }
+
             transform.position = transform.position + new Vector3(2.5f, 0);
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             spriteRenderer.sprite = chickenSpriteArray[PlayerPrefs.GetInt("PlayerCharacter", 12) - 8];
 
-            currentPosition = transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 3f);
+
+            if (hit.collider != null && hit.collider.CompareTag("Tree"))
+            {
+                return;
+            }
+
             transform.position = transform.position + new Vector3(-2.5f, 0);
         }
     }
@@ -75,11 +96,6 @@ public class PlayerMovement : MonoBehaviour
             deathPanel.SetActive(true);
             gameObject.SetActive(false);
         }
-
-        if (collision.CompareTag("Tree"))
-        {
-            transform.position = currentPosition;
-        }
     }
 
     // If the chicken goes off screen, kill the chicken and show the death screen
@@ -88,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Chicken crossed the death barrier");
         deathPanel.SetActive(true);
         gameObject.SetActive(false);
+
     }
 
     public void CheckHighScore()
@@ -96,5 +113,10 @@ public class PlayerMovement : MonoBehaviour
         {
             hs.SetHighScore("HighScore", currentScore);
         }
+    }
+
+    public int GetCurrentScore()
+    {
+        return currentScore;
     }
 }

@@ -15,6 +15,7 @@ public class RowGenerator : MonoBehaviour
     [SerializeField] private List<int> grassRowTypes = new List<int>();
     [SerializeField] private List<GameObject> currentObstacleRows = new List<GameObject>();
     [SerializeField] private float carStartingPos;
+    [SerializeField] private PlayerMovement playerMovement;
 
     // Instantiates the starting amount of rows
     private void Start()
@@ -28,23 +29,21 @@ public class RowGenerator : MonoBehaviour
         grassRowTypes.Add(0);
     }
 
-    // When the player moves forward, creates new rows
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            CreateGround();
-        }
-    }
-
     // Creates rows and removes previous rows in the list, keeping the total the same
-    private void CreateGround()
+    public void CreateGround()
     {
         int row = Random.Range(0, groundTypes.Count);
         int waterType = 0;
         int grassType = 0;
         GameObject obstacle;
 
+        int randomRow = Random.Range(0, 50);
+        
+        if (playerMovement.GetCurrentScore() % 50 < randomRow)
+        {
+            row = groundTypes.Count - 1;
+        }
+        
         switch (row)
         {
             // If the row selected was a grass row, tells the computer which row was selected
