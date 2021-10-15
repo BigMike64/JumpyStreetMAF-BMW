@@ -7,20 +7,20 @@ public class BgMusic : MonoBehaviour
     public static BgMusic BgInstance;
     public AudioSource Audio;
 
-    private void Awake()
-    {
-        if(BgInstance !=null && BgInstance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        BgInstance = this;
-        DontDestroyOnLoad(this);
-    }
-
     private void Start()
     {
         Audio = GetComponent<AudioSource>();
+    }
+
+    public void Stop()
+    {
+        Audio = GetComponent<AudioSource>();
+        Audio.Stop();
+    }
+
+    public void Play()
+    {
+        Audio = GetComponent<AudioSource>();
+        Audio.Play();
     }
 }

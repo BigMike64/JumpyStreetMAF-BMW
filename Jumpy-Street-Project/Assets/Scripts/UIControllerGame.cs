@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class UIControllerGame : MonoBehaviour
 {
+    [SerializeField] BgMusic backgroundMusic;
+
     public void OnQuitButtonClick()
     {
         print("Quitting the game");
@@ -15,6 +17,7 @@ public class UIControllerGame : MonoBehaviour
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
+        backgroundMusic.Play();
     }
 
     public void OnMainMenuClick()

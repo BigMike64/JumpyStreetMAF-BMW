@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private RowGenerator rowGenerator;
+    [SerializeField] BgMusic backgroundMusic;
 
     // Faces the chosen chicken sprite the correct direction, and then displays the score
     private void Start()
@@ -46,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
             transform.position = transform.position + new Vector3(0, 2.5f);
             camera.transform.position = camera.transform.position + new Vector3(0, 2.5f);
 
+            FindObjectOfType<AudioManager>().Play("Jump");
+
             currentScore += 1;
             scoreText.text = "Score: " + currentScore;
 
@@ -64,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             transform.position = transform.position + new Vector3(2.5f, 0);
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
@@ -77,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             transform.position = transform.position + new Vector3(-2.5f, 0);
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
     }
 
@@ -84,27 +89,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.CompareTag("Water"))
         {
-            Debug.Log("Chicken drowned");
             currentScore -= 1;
-            deathPanel.SetActive(true);
-            gameObject.SetActive(false);
+
+            FindObjectOfType<AudioManager>().Play("Splash");
+            Death();
         }
 
         if (collision.CompareTag("Car"))
         {
-            Debug.Log("Chicken got ran over");
-            deathPanel.SetActive(true);
-            gameObject.SetActive(false);
+            FindObjectOfType<AudioManager>().Play("Crash");
+            Death();
         }
     }
 
     // If the chicken goes off screen, kill the chicken and show the death screen
     private void OnBecameInvisible()
     {
-        Debug.Log("Chicken crossed the death barrier");
-        deathPanel.SetActive(true);
-        gameObject.SetActive(false);
-
+        Death();
     }
 
     public void CheckHighScore()
@@ -118,5 +119,12 @@ public class PlayerMovement : MonoBehaviour
     public int GetCurrentScore()
     {
         return currentScore;
+    }
+
+    private void Death()
+    {
+        deathPanel.SetActive(true);
+        gameObject.SetActive(false);
+        backgroundMusic.Stop();
     }
 }

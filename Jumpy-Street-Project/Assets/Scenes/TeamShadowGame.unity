@@ -1109,6 +1109,7 @@ MonoBehaviour:
   - {fileID: -2480827710714329790, guid: a91e5c48820f403498e343880b3a9637, type: 3}
   - {fileID: 4944558267728510045, guid: a91e5c48820f403498e343880b3a9637, type: 3}
   rowGenerator: {fileID: 837442895}
+  backgroundMusic: {fileID: 526565557}
 --- !u!50 &777998169
 Rigidbody2D:
   serializedVersion: 4
@@ -1470,7 +1471,7 @@ MonoBehaviour:
   sounds:
   - name: Jump
     clip: {fileID: 8300000, guid: 91717d2d14694b14fa2a79c9f39531f2, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -1680,6 +1681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab023b3b41727e45bf0cab8276ed3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 526565557}
 --- !u!4 &1855398760
 Transform:
   m_ObjectHideFlags: 0
