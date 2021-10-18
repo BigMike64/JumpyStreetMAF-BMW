@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] new private GameObject camera;
 
     [SerializeField] GameObject deathPanel;
+    [SerializeField] GameObject pausePanel;
     [SerializeField] Text scoreText;
     private int currentScore = 0;
     [SerializeField] private HighScore hs;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         scoreText.text = "Score: " + currentScore;
         highScore = hs.GetHighScore("HighScore");
         deathPanel.SetActive(false);
+        pausePanel.SetActive(false);
     }
 
     // Allows the player to move up, right, and left within the confines of the screen
@@ -82,6 +84,19 @@ public class PlayerMovement : MonoBehaviour
 
             transform.position = transform.position + new Vector3(-2.5f, 0);
             FindObjectOfType<AudioManager>().Play("Jump");
+        }
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            if (pausePanel.activeInHierarchy)
+            {
+                Time.timeScale = 1;
+                pausePanel.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0;
+                pausePanel.SetActive(true);
+            }
         }
     }
 
