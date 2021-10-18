@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Allows the player to move up, right, and left within the confines of the screen
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.UpArrow))
+        if(Input.GetKeyUp(KeyCode.UpArrow) && !pausePanel.activeInHierarchy)
         {
             spriteRenderer.sprite = chickenSpriteArray[PlayerPrefs.GetInt("PlayerCharacter", 12)];
 
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             CheckHighScore();
             hs.highScoreText.text = "High Score: " + highScore;
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKeyUp(KeyCode.RightArrow) && !pausePanel.activeInHierarchy)
         {
             spriteRenderer.sprite = chickenSpriteArray[PlayerPrefs.GetInt("PlayerCharacter", 12) - 4];
 
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = transform.position + new Vector3(2.5f, 0);
             FindObjectOfType<AudioManager>().Play("Jump");
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        if (Input.GetKeyUp(KeyCode.LeftArrow) && !pausePanel.activeInHierarchy)
         {
             spriteRenderer.sprite = chickenSpriteArray[PlayerPrefs.GetInt("PlayerCharacter", 12) - 8];
 
