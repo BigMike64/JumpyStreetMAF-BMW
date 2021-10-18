@@ -96,10 +96,6 @@ public class UIController : MonoBehaviour
     public void OnConfirmButtonClick()
     {
         ChooseCharacter();
-        PlayerPrefs.SetInt("PlayerCharacter", currentCharacter);
-        
-        currentCharacter = 0;
-        chicken.GetComponent<Image>().sprite = chickenSprites[0];
 
         titlePanel.SetActive(true);
         helpPanel.SetActive(false);
@@ -112,11 +108,11 @@ public class UIController : MonoBehaviour
     {
         if (currentCharacter < 4)
         {
-            currentCharacter += 12;
+            PlayerPrefs.SetInt("PlayerCharacter", currentCharacter + 12);
         }
         else
         {
-            currentCharacter += 24;
+            PlayerPrefs.SetInt("PlayerCharacter", currentCharacter + 24);
         }
     }
 }
