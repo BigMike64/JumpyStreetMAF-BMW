@@ -3227,7 +3227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1485264622
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3577,7 +3577,14 @@ MonoBehaviour:
 
 
     Character and Art Design
-    - Michael Flicker'
+    - Michael Flicker
+
+
+    Arcade Music Loop by joshuaempyre
+
+
+    Retro Platforming
+    by David Fesliyan'
 --- !u!222 &1619861110
 CanvasRenderer:
   m_ObjectHideFlags: 0
