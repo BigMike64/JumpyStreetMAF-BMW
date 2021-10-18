@@ -97,7 +97,9 @@ public class UIController : MonoBehaviour
     {
         ChooseCharacter();
         PlayerPrefs.SetInt("PlayerCharacter", currentCharacter);
-        PlayerPrefs.Save();
+        
+        currentCharacter = 0;
+        chicken.GetComponent<Image>().sprite = chickenSprites[0];
 
         titlePanel.SetActive(true);
         helpPanel.SetActive(false);
