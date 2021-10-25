@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HighScore : MonoBehaviour
 {
-    public Text highScoreText;
-    public int highScore;
+    [SerializeField] private Text highScoreText;
+    [SerializeField] private int highScore;
 
-    // Start is called before the first frame update
+    // Gets the highscore playerpref, and displays the highscore as a string
     void Start()
     {
         highScore = GetHighScore("HighScore");
@@ -23,5 +21,10 @@ public class HighScore : MonoBehaviour
     public int GetHighScore(string HighScore)
     {
         return PlayerPrefs.GetInt(HighScore);
-    }    
+    }
+
+    public Text GetHighscoreText()
+    {
+        return highScoreText;
+    }
 }

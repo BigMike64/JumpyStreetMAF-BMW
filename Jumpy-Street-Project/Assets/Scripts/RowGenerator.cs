@@ -5,7 +5,7 @@ using UnityEngine;
 public class RowGenerator : MonoBehaviour
 {
     private Vector2 currentRow = new Vector2(0, 0);
-    private int maxRowCount = 5;
+    private readonly int maxRowCount = 5;
     
     [SerializeField] private Transform rowHolder;
     [SerializeField] private List<GameObject> groundTypes = new List<GameObject>();

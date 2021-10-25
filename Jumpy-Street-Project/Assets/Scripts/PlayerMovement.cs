@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject deathPanel;
     [SerializeField] GameObject pausePanel;
     [SerializeField] Text scoreText;
+    [SerializeField] Text deathText;
+    [SerializeField] Text finalScoreText;
+    [SerializeField] Text highestScoreText;
     private int currentScore = 0;
     [SerializeField] private HighScore hs;
     private int highScore;
@@ -55,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
             scoreText.text = "Score: " + currentScore;
 
             CheckHighScore();
-            hs.highScoreText.text = "High Score: " + highScore;
+            hs.GetHighscoreText().text = "High Score: " + highScore;
         }
         if (Input.GetKeyUp(KeyCode.RightArrow) && !pausePanel.activeInHierarchy)
         {
@@ -107,12 +110,14 @@ public class PlayerMovement : MonoBehaviour
             currentScore -= 1;
 
             FindObjectOfType<AudioManager>().Play("Splash");
+            deathText.text = "The chicken could not cross the road.\nTry again?";
             Death();
         }
 
         if (collision.CompareTag("Car"))
         {
             FindObjectOfType<AudioManager>().Play("Crash");
+            deathText.text = "The chicken could not cross the road.\nTry again?";
             Death();
         }
     }
@@ -120,7 +125,11 @@ public class PlayerMovement : MonoBehaviour
     // If the chicken goes off screen, kill the chicken and show the death screen
     private void OnBecameInvisible()
     {
-        Death();
+        if(!deathPanel.activeInHierarchy)
+        {
+            deathText.text = "Don't give up!\nTry again?";
+            Death();
+        }
     }
 
     public void CheckHighScore()
@@ -136,9 +145,13 @@ public class PlayerMovement : MonoBehaviour
         return currentScore;
     }
 
+    // Displays the death screen and the final and highest score
     private void Death()
     {
         deathPanel.SetActive(true);
+        finalScoreText.text = "Final Score: " + currentScore;
+        highestScoreText.text = "High Score: " + highScore;
+
         gameObject.SetActive(false);
         backgroundMusic.Stop();
     }

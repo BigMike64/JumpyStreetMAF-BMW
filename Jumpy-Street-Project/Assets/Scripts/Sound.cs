@@ -1,9 +1,9 @@
 using UnityEngine;
 
+// Allows the game to play sound effects with the following values predefined
 [System.Serializable]
 public class Sound
 {
-
 	public string name;
 
 	public AudioClip clip;
@@ -18,5 +18,4 @@ public class Sound
 
 	[HideInInspector]
 	public AudioSource source;
-
 }
